@@ -53,6 +53,9 @@ function App() {
           phoneNumber: phoneNumber,
         },
       ]);
+      setName("");
+      setPhoneNumber("");
+      setEmail("");
     } else {
       alert("fail");
     }
@@ -67,6 +70,13 @@ function App() {
     setUsers(newUsers);
   };
 
+  const handleEditButton = (index) => {
+    console.log(users[index]);
+    setName(users[index].name);
+    setEmail(users[index].email);
+    setPhoneNumber(users[index].phoneNumber);
+  };
+
   return (
     <div className="App">
       <table>
@@ -76,6 +86,7 @@ function App() {
             <input
               placeholder="Name"
               onChange={(e) => setName(e.target.value)}
+              value={name}
             />
           </td>
           <td>{nameError}</td>
@@ -85,6 +96,7 @@ function App() {
           <input
             placeholder="Phone Number"
             onChange={(e) => setPhoneNumber(e.target.value)}
+            value={phoneNumber}
           />
           <td>{phoneNumberError}</td>
         </tr>
@@ -93,6 +105,7 @@ function App() {
           <input
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
           <td>{emailError}</td>
         </tr>
@@ -121,6 +134,13 @@ function App() {
                   }}
                 >
                   Remove
+                </button>
+                <button
+                  onClick={() => {
+                    handleEditButton(index);
+                  }}
+                >
+                  Edit
                 </button>
               </td>
             </tr>
